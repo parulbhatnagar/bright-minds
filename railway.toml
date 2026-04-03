@@ -1,0 +1,7 @@
+[build]
+builder = "nixpacks"
+buildCommand = "pnpm install && pnpm --filter @study-aid/types build && pnpm --filter @study-aid/ai build && pnpm --filter @study-aid/api build"
+
+[deploy]
+startCommand = "node apps/api/dist/index.js"
+restartPolicyType = "on_failure"
