@@ -1,0 +1,86 @@
+[
+  {
+    "id": "animals-dog-park",
+    "filename": "animals-dog-park.jpg",
+    "url": "/images/animals-dog-park.jpg",
+    "altText": "A golden retriever running through a sunny park with green grass",
+    "category": "animals"
+  },
+  {
+    "id": "animals-cat-window",
+    "filename": "animals-cat-window.jpg",
+    "url": "/images/animals-cat-window.jpg",
+    "altText": "An orange tabby cat sitting on a windowsill looking outside",
+    "category": "animals"
+  },
+  {
+    "id": "animals-ducks-pond",
+    "filename": "animals-ducks-pond.jpg",
+    "url": "/images/animals-ducks-pond.jpg",
+    "altText": "Two ducks swimming on a calm pond with lily pads",
+    "category": "animals"
+  },
+  {
+    "id": "animals-rabbit-garden",
+    "filename": "animals-rabbit-garden.jpg",
+    "url": "/images/animals-rabbit-garden.jpg",
+    "altText": "A white rabbit sitting in a colourful flower garden",
+    "category": "animals"
+  },
+  {
+    "id": "nature-rainbow",
+    "filename": "nature-rainbow.jpg",
+    "url": "/images/nature-rainbow.jpg",
+    "altText": "A bright rainbow arching over green hills after rain",
+    "category": "nature"
+  },
+  {
+    "id": "nature-sunflowers",
+    "filename": "nature-sunflowers.jpg",
+    "url": "/images/nature-sunflowers.jpg",
+    "altText": "A field of tall yellow sunflowers under a blue sky",
+    "category": "nature"
+  },
+  {
+    "id": "nature-beach",
+    "filename": "nature-beach.jpg",
+    "url": "/images/nature-beach.jpg",
+    "altText": "Gentle ocean waves washing onto a sandy beach on a sunny day",
+    "category": "nature"
+  },
+  {
+    "id": "nature-autumn-leaves",
+    "filename": "nature-autumn-leaves.jpg",
+    "url": "/images/nature-autumn-leaves.jpg",
+    "altText": "Red and orange autumn leaves on the ground around a tree",
+    "category": "nature"
+  },
+  {
+    "id": "everyday-kitchen",
+    "filename": "everyday-kitchen.jpg",
+    "url": "/images/everyday-kitchen.jpg",
+    "altText": "A bright and tidy kitchen with fruit on the counter",
+    "category": "everyday"
+  },
+  {
+    "id": "everyday-playground",
+    "filename": "everyday-playground.jpg",
+    "url": "/images/everyday-playground.jpg",
+    "altText": "A colourful playground with a slide and swings on a sunny day",
+    "category": "everyday"
+  },
+  {
+    "id": "everyday-library",
+    "filename": "everyday-library.jpg",
+    "url": "/images/everyday-library.jpg",
+    "altText": "Shelves of colourful books in a cosy library",
+    "category": "everyday"
+  },
+  {
+    "id": "everyday-market",
+    "filename": "everyday-market.jpg",
+    "url": "/images/everyday-market.jpg",
+    "altText": "A farmers market with stalls of fresh fruit and vegetables",
+    "category": "everyday"
+  }
+]
