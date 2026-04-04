@@ -58,7 +58,7 @@ async function fetchFromUnsplash(count: number): Promise<Image[]> {
       throw new Error(`Unsplash error ${res.status}: ${text}`);
     }
 
-    const [photo]: UnsplashPhoto[] = await res.json();
+    const [photo] = (await res.json()) as UnsplashPhoto[];
 
     images.push({
       id: photo.id,
