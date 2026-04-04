@@ -11,6 +11,9 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src"
   },
+  "dependencies": {
+    "@study-aid/types": "workspace:*"
+  },
   "devDependencies": {
     "@types/react": "^18.3.0",
     "typescript": "^5.4.0"
