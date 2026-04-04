@@ -14,8 +14,10 @@
   "dependencies": {
     "@fastify/cors": "^9.0.0",
     "@study-aid/ai": "workspace:*",
+    "@study-aid/db": "workspace:*",
     "@study-aid/types": "workspace:*",
-    "fastify": "^4.27.0"
+    "fastify": "^4.27.0",
+    "zod": "^3.23.0"
   },
   "devDependencies": {
     "tsx": "^4.11.0",
