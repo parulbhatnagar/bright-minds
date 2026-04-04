@@ -8,7 +8,7 @@ export default function Error({ reset }: { reset: () => void }) {
       <p className="text-xl text-gray-700 dark:text-gray-300">
         Something went wrong. Let&apos;s try again!
       </p>
-      <Button onClick={reset}>Try again</Button>
+      <Button onClick={() => reset()}>Try again</Button>
     </div>
   );
 }
