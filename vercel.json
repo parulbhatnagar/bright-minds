@@ -1,6 +1,5 @@
 {
   "buildCommand": "pnpm --filter @study-aid/types build && pnpm --filter @study-aid/web build",
   "outputDirectory": "apps/web/.next",
-  "framework": "nextjs",
   "installCommand": "pnpm install"
 }
