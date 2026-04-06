@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { ChildProfile, ModuleId, DifficultyLevel } from '@study-aid/types';
+import type { ChildProfile, ModuleId, DifficultyLevel } from '@bright-minds/types';
 
 export async function getChildProfile(
   supabase: SupabaseClient,

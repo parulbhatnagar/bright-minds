@@ -1,9 +1,9 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import { getChildProfile } from '@study-aid/db';
-import { getSessions } from '@study-aid/db';
-import { ModuleTile, StarCount } from '@study-aid/ui';
-import type { ModuleId } from '@study-aid/types';
+import { getChildProfile } from '@bright-minds/db';
+import { getSessions } from '@bright-minds/db';
+import { ModuleTile, StarCount } from '@bright-minds/ui';
+import type { ModuleId } from '@bright-minds/types';
 
 interface ModuleConfig {
   id: ModuleId;

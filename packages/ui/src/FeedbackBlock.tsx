@@ -1,5 +1,5 @@
 import React from 'react';
-import type { FeedbackResult } from '@study-aid/types';
+import type { FeedbackResult } from '@bright-minds/types';
 
 interface FeedbackBlockProps {
   feedback: FeedbackResult;

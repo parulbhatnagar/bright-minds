@@ -1,10 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Button, ImageDisplay, LoadingState, TextArea, EmotionPicker, CelebrationOverlay } from '@study-aid/ui';
-import type { EmotionMirrorFeedbackResult, Image } from '@study-aid/types';
+import { Button, ImageDisplay, LoadingState, TextArea, EmotionPicker, CelebrationOverlay } from '@bright-minds/ui';
+import type { EmotionMirrorFeedbackResult, Image } from '@bright-minds/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3002';
 const STARS_PER_SESSION = 3;
 
 type PageState = 'loading-image' | 'idle' | 'submitting' | 'feedback' | 'celebrating' | 'error';
@@ -29,7 +28,7 @@ export default function EmotionMirrorPage() {
     setReasoning('');
     setFeedback(null);
     try {
-      const res = await fetch(`${API_URL}/api/images?count=1&random=true`, { cache: 'no-store' });
+      const res = await fetch(`/api/images?count=1&random=true`, { cache: 'no-store' });
       if (!res.ok) throw new Error('Failed');
       const data = await res.json();
       setImage(data.images[0] ?? null);
@@ -44,7 +43,7 @@ export default function EmotionMirrorPage() {
     const childId = getChildId();
     if (!childId) return;
     try {
-      const res = await fetch(`${API_URL}/api/sessions/start`, {
+      const res = await fetch(`/api/sessions/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ module: 'emotion-mirror', childId }),
@@ -60,7 +59,7 @@ export default function EmotionMirrorPage() {
     if (!image || !selectedEmotion) return;
     setPageState('submitting');
     try {
-      const res = await fetch(`${API_URL}/api/modules/emotion-mirror/feedback`, {
+      const res = await fetch(`/api/modules/emotion-mirror/feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -85,7 +84,7 @@ export default function EmotionMirrorPage() {
     setPageState('celebrating');
     if (sessionIdRef.current) {
       try {
-        await fetch(`${API_URL}/api/sessions/complete`, {
+        await fetch(`/api/sessions/complete`, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sessionId: sessionIdRef.current, starsEarned: STARS_PER_SESSION }),
         });

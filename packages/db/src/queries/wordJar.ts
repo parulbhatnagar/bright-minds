@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { WordJarEntry, ModuleId } from '@study-aid/types';
+import type { WordJarEntry, ModuleId } from '@bright-minds/types';
 
 export interface AddWordParams {
   childId: string;

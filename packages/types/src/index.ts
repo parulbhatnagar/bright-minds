@@ -143,8 +143,8 @@ export interface EmotionMirrorFeedbackRequest {
 export interface EmotionMirrorFeedbackResult {
   appreciation: string;
   expansion: string;
-  newEmotionWord?: string;
-  newEmotionDefinition?: string;
+  newEmotionWord?: string | null;
+  newEmotionDefinition?: string | null;
 }
 
 export interface JournalFeedbackRequest {
@@ -176,7 +176,7 @@ export interface MathFeedbackRequest {
 export interface MathFeedbackResult {
   appreciation: string;
   isCorrect: boolean;
-  explanation?: string;
+  explanation?: string | null;
 }
 
 // --- Zod schemas (runtime validation) ---
@@ -285,8 +285,8 @@ export const EmotionMirrorFeedbackRequestSchema = z.object({
 export const EmotionMirrorFeedbackResultSchema = z.object({
   appreciation: z.string(),
   expansion: z.string(),
-  newEmotionWord: z.string().optional(),
-  newEmotionDefinition: z.string().optional(),
+  newEmotionWord: z.string().nullable().optional(),
+  newEmotionDefinition: z.string().nullable().optional(),
 });
 
 export const JournalFeedbackRequestSchema = z.object({
@@ -318,5 +318,5 @@ export const MathFeedbackRequestSchema = z.object({
 export const MathFeedbackResultSchema = z.object({
   appreciation: z.string(),
   isCorrect: z.boolean(),
-  explanation: z.string().optional(),
+  explanation: z.string().nullable().optional(),
 });

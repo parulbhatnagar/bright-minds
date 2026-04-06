@@ -1,7 +1,8 @@
 {
-  "name": "@study-aid/db",
+  "name": "@bright-minds/db",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
@@ -12,7 +13,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@study-aid/types": "workspace:*",
+    "@bright-minds/types": "workspace:*",
     "@supabase/supabase-js": "^2.39.0",
     "@supabase/ssr": "^0.6.0"
   },

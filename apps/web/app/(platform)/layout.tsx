@@ -2,12 +2,17 @@ import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { LogoutButton } from '@/components/LogoutButton';
+import { ChildSessionInit } from '@/components/ChildSessionInit';
+import { getChildProfile } from '@bright-minds/db';
 
 export default async function PlatformLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) redirect('/login');
+
+  const profile = await getChildProfile(supabase, user.id).catch(() => null);
+  const childId = profile?.id ?? '';
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white dark:from-gray-900 dark:to-gray-800">
@@ -29,6 +34,7 @@ export default async function PlatformLayout({ children }: { children: React.Rea
           <LogoutButton />
         </div>
       </header>
+      <ChildSessionInit childId={childId} />
       <main className="flex flex-col items-center py-8 px-4">
         {children}
       </main>

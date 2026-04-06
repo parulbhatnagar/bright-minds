@@ -1,5 +1,5 @@
-import type { FastifyInstance } from 'fastify';
-import type { Image, ImageListResponse } from '@study-aid/types';
+import { NextRequest, NextResponse } from 'next/server';
+import type { Image, ImageListResponse } from '@bright-minds/types';
 
 const UNSPLASH_API = 'https://api.unsplash.com';
 
@@ -35,11 +35,8 @@ async function fetchFromUnsplash(count: number): Promise<Image[]> {
   const accessKey = process.env.UNSPLASH_ACCESS_KEY;
   if (!accessKey) throw new Error('UNSPLASH_ACCESS_KEY is not set');
 
-  // Pick a different category for each image requested
   const images: Image[] = [];
-
   for (let i = 0; i < count; i++) {
-    // Rotate through categories to ensure distribution
     const category = CATEGORY_NAMES[i % CATEGORY_NAMES.length];
     const query = pickRandom(CATEGORIES[category]);
 
@@ -59,7 +56,6 @@ async function fetchFromUnsplash(count: number): Promise<Image[]> {
     }
 
     const [photo] = (await res.json()) as UnsplashPhoto[];
-
     images.push({
       id: photo.id,
       url: photo.urls.regular,
@@ -67,26 +63,16 @@ async function fetchFromUnsplash(count: number): Promise<Image[]> {
       category,
     });
   }
-
   return images;
 }
 
-export async function imagesRoute(app: FastifyInstance) {
-  app.get<{
-    Querystring: { count?: string };
-  }>('/api/images', async (request, reply) => {
-    const count = Math.min(Number(request.query.count ?? 1), 10);
-
-    try {
-      const images = await fetchFromUnsplash(count);
-      const response: ImageListResponse = { images };
-      return reply.send(response);
-    } catch (err) {
-      app.log.error(err);
-      return reply.status(503).send({
-        error: 'images_unavailable',
-        message: 'Could not load images right now. Please try again.',
-      });
-    }
-  });
+export async function GET(req: NextRequest) {
+  const count = Math.min(Number(req.nextUrl.searchParams.get('count') ?? 1), 10);
+  try {
+    const images = await fetchFromUnsplash(count);
+    const response: ImageListResponse = { images };
+    return NextResponse.json(response);
+  } catch {
+    return NextResponse.json({ error: 'images_unavailable', message: 'Could not load images right now. Please try again.' }, { status: 503 });
+  }
 }

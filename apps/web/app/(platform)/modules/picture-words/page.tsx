@@ -1,10 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Button, FeedbackBlock, ImageDisplay, LoadingState, TextArea, CelebrationOverlay } from '@study-aid/ui';
-import type { FeedbackResult, Image } from '@study-aid/types';
+import { Button, FeedbackBlock, ImageDisplay, LoadingState, TextArea, CelebrationOverlay } from '@bright-minds/ui';
+import type { FeedbackResult, Image } from '@bright-minds/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3002';
 const STARS_PER_SESSION = 3;
 
 type PageState = 'loading-image' | 'idle' | 'submitting' | 'feedback' | 'celebrating' | 'error';
@@ -28,7 +27,7 @@ export default function PictureWordsPage() {
     const childId = getChildId();
     if (!childId) return;
     try {
-      const res = await fetch(`${API_URL}/api/sessions/start`, {
+      const res = await fetch(`/api/sessions/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ module: 'picture-words', childId }),
@@ -49,7 +48,7 @@ export default function PictureWordsPage() {
     setErrorMessage('');
 
     try {
-      const res = await fetch(`${API_URL}/api/images?count=1&random=true`, { cache: 'no-store' });
+      const res = await fetch(`/api/images?count=1&random=true`, { cache: 'no-store' });
       if (!res.ok) throw new Error('Image load failed');
       const data = await res.json();
       setImage(data.images[0] ?? null);
@@ -71,7 +70,7 @@ export default function PictureWordsPage() {
     setPageState('submitting');
 
     try {
-      const res = await fetch(`${API_URL}/api/feedback`, {
+      const res = await fetch(`/api/feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -95,7 +94,7 @@ export default function PictureWordsPage() {
     setPageState('celebrating');
     if (sessionIdRef.current) {
       try {
-        await fetch(`${API_URL}/api/sessions/complete`, {
+        await fetch(`/api/sessions/complete`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sessionId: sessionIdRef.current, starsEarned: STARS_PER_SESSION }),

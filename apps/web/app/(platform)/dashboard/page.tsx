@@ -1,8 +1,8 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import { getChildProfile, getSessions, getWordJar } from '@study-aid/db';
+import { getChildProfile, getSessions, getWordJar } from '@bright-minds/db';
 import Link from 'next/link';
-import type { ModuleId } from '@study-aid/types';
+import type { ModuleId } from '@bright-minds/types';
 
 const MODULE_LABELS: Record<ModuleId, { label: string; emoji: string }> = {
   'picture-words': { label: 'PictureWords', emoji: '🖼️' },

@@ -1,10 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Button, FeedbackBlock, LoadingState, TextArea, WordCard, CelebrationOverlay } from '@study-aid/ui';
-import type { FeedbackResult } from '@study-aid/types';
+import { Button, FeedbackBlock, LoadingState, TextArea, WordCard, CelebrationOverlay } from '@bright-minds/ui';
+import type { FeedbackResult } from '@bright-minds/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3002';
 const STARS_PER_SESSION = 3;
 
 const WORD_BANK = [
@@ -29,11 +28,11 @@ function getChildId(): string {
   return sessionStorage.getItem('childId') ?? '';
 }
 
-type PageState = 'idle' | 'submitting' | 'feedback' | 'celebrating' | 'error';
+type PageState = 'loading' | 'idle' | 'submitting' | 'feedback' | 'celebrating' | 'error';
 
 export default function WordWorldPage() {
-  const [pageState, setPageState] = useState<PageState>('idle');
-  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
+  const [pageState, setPageState] = useState<PageState>('loading');
+  const [currentWord, setCurrentWord] = useState(WORD_BANK[0]);
   const [sentence, setSentence] = useState('');
   const [feedback, setFeedback] = useState<FeedbackResult | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
@@ -43,7 +42,7 @@ export default function WordWorldPage() {
     const childId = getChildId();
     if (!childId) return;
     try {
-      const res = await fetch(`${API_URL}/api/sessions/start`, {
+      const res = await fetch(`/api/sessions/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ module: 'word-world', childId }),
@@ -55,7 +54,11 @@ export default function WordWorldPage() {
     } catch { /* non-blocking */ }
   }, []);
 
-  useEffect(() => { startSession(); }, [startSession]);
+  useEffect(() => {
+    setCurrentWord(getRandomWord());
+    setPageState('idle');
+    startSession();
+  }, [startSession]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,7 +66,7 @@ export default function WordWorldPage() {
     setPageState('submitting');
 
     try {
-      const res = await fetch(`${API_URL}/api/modules/word-world/feedback`, {
+      const res = await fetch(`/api/modules/word-world/feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -88,7 +91,7 @@ export default function WordWorldPage() {
     setPageState('celebrating');
     if (sessionIdRef.current) {
       try {
-        await fetch(`${API_URL}/api/sessions/complete`, {
+        await fetch(`/api/sessions/complete`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sessionId: sessionIdRef.current, starsEarned: STARS_PER_SESSION }),

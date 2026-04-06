@@ -1,10 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Button, LoadingState, TextArea, ScenePicker, JOURNAL_SCENES, CelebrationOverlay } from '@study-aid/ui';
-import type { JournalFeedbackResult } from '@study-aid/types';
+import { Button, LoadingState, TextArea, ScenePicker, JOURNAL_SCENES, CelebrationOverlay } from '@bright-minds/ui';
+import type { JournalFeedbackResult } from '@bright-minds/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3002';
 const STARS_PER_SESSION = 3;
 
 type PageState = 'idle' | 'submitting' | 'feedback' | 'celebrating' | 'error';
@@ -26,7 +25,7 @@ export default function MyDayJournalPage() {
     const childId = getChildId();
     if (!childId) return;
     try {
-      const res = await fetch(`${API_URL}/api/sessions/start`, {
+      const res = await fetch(`/api/sessions/start`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ module: 'my-day-journal', childId }),
       });
@@ -43,7 +42,7 @@ export default function MyDayJournalPage() {
     if (!sceneId || !journalText.trim()) return;
     setPageState('submitting');
     try {
-      const res = await fetch(`${API_URL}/api/modules/my-day-journal/feedback`, {
+      const res = await fetch(`/api/modules/my-day-journal/feedback`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           sceneId,
@@ -66,7 +65,7 @@ export default function MyDayJournalPage() {
     setPageState('celebrating');
     if (sessionIdRef.current) {
       try {
-        await fetch(`${API_URL}/api/sessions/complete`, {
+        await fetch(`/api/sessions/complete`, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sessionId: sessionIdRef.current, starsEarned: STARS_PER_SESSION }),
         });

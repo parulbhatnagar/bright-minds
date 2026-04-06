@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Session, ModuleId } from '@study-aid/types';
+import type { Session, ModuleId } from '@bright-minds/types';
 
 export async function createSession(
   supabase: SupabaseClient,

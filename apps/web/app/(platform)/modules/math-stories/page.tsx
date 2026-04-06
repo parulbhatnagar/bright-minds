@@ -1,10 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Button, LoadingState, TextArea, CelebrationOverlay } from '@study-aid/ui';
-import type { MathFeedbackResult } from '@study-aid/types';
+import { Button, LoadingState, TextArea, CelebrationOverlay } from '@bright-minds/ui';
+import type { MathFeedbackResult } from '@bright-minds/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3002';
 const STARS_PER_SESSION = 3;
 
 interface ProblemData {
@@ -35,7 +34,7 @@ export default function MathStoriesPage() {
     setExplanation('');
     setFeedback(null);
     try {
-      const res = await fetch(`${API_URL}/api/modules/math-stories/generate`, {
+      const res = await fetch(`/api/modules/math-stories/generate`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ difficultyLevel: 'simple' }),
       });
@@ -53,7 +52,7 @@ export default function MathStoriesPage() {
     const childId = getChildId();
     if (!childId) return;
     try {
-      const res = await fetch(`${API_URL}/api/sessions/start`, {
+      const res = await fetch(`/api/sessions/start`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ module: 'math-stories', childId }),
       });
@@ -70,7 +69,7 @@ export default function MathStoriesPage() {
     try {
       // Decode answer token (base64 encoded number)
       const correctAnswer = Number(atob(problemData.answerToken));
-      const res = await fetch(`${API_URL}/api/modules/math-stories/feedback`, {
+      const res = await fetch(`/api/modules/math-stories/feedback`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           problem: problemData.problem,
@@ -98,7 +97,7 @@ export default function MathStoriesPage() {
     setPageState('celebrating');
     if (sessionIdRef.current) {
       try {
-        await fetch(`${API_URL}/api/sessions/complete`, {
+        await fetch(`/api/sessions/complete`, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sessionId: sessionIdRef.current, starsEarned: STARS_PER_SESSION }),
         });
