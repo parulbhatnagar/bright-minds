@@ -1,5 +1,5 @@
 {
-  "name": "study-aid",
+  "name": "bright-minds",
   "private": true,
   "scripts": {
     "dev": "turbo dev",

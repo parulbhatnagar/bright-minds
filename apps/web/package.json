@@ -1,5 +1,5 @@
 {
-  "name": "@study-aid/web",
+  "name": "@bright-minds/web",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -12,11 +12,16 @@
     "clean": "rm -rf .next"
   },
   "dependencies": {
-    "@study-aid/types": "workspace:*",
-    "@study-aid/ui": "workspace:*",
+    "@bright-minds/db": "workspace:*",
+    "@bright-minds/types": "workspace:*",
+    "@bright-minds/ui": "workspace:*",
+    "@supabase/ssr": "^0.6.0",
+    "@supabase/supabase-js": "^2.39.0",
     "next": "^14.2.0",
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react-dom": "^18.3.0",
+    "@bright-minds/ai": "workspace:*",
+    "zod": "^3.23.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

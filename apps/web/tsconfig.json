@@ -16,9 +16,10 @@
     ],
     "noEmit": true,
     "paths": {
-      "@/*": [
-        "./app/*"
-      ]
+      "@/app/*": ["./app/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/components/*": ["./components/*"],
+      "@/*": ["./app/*", "./lib/*", "./components/*"]
     },
     "allowJs": true,
     "incremental": true,

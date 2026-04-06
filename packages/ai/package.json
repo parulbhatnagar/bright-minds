@@ -1,5 +1,5 @@
 {
-  "name": "@study-aid/ai",
+  "name": "@bright-minds/ai",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",
@@ -25,7 +25,8 @@
     "@langchain/anthropic": "^1.3.26",
     "@langchain/core": "^1.1.38",
     "@langchain/openai": "^1.4.1",
-    "@study-aid/types": "workspace:*",
-    "langchain": "^1.2.39"
+    "@bright-minds/types": "workspace:*",
+    "langchain": "^1.2.39",
+    "zod": "^3.23.0"
   }
 }

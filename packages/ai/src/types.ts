@@ -1,4 +1,4 @@
-import type { FeedbackResult } from '@study-aid/types';
+import type { FeedbackResult } from '@bright-minds/types';
 
 export interface AIProvider {
   getFeedback(

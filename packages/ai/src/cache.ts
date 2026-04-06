@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import type { FeedbackResult } from '@study-aid/types';
+import type { FeedbackResult } from '@bright-minds/types';
 import type { AIProvider } from './types.js';
 
 const TTL_MS = 3_600_000; // 1 hour

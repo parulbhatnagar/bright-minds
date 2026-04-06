@@ -1,8 +1,8 @@
 import { initChatModel } from 'langchain/chat_models/universal';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
-import { FeedbackResultSchema } from '@study-aid/types';
+import { FeedbackResultSchema } from '@bright-minds/types';
 import type { AIProvider } from '../types.js';
-import type { FeedbackResult } from '@study-aid/types';
+import type { FeedbackResult } from '@bright-minds/types';
 
 const SYSTEM_PROMPT = `You are a friendly, encouraging teacher helping a child improve their speech and expression.
 

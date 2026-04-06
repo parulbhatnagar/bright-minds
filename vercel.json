@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm --filter @study-aid/types build && pnpm --filter @study-aid/web build",
+  "buildCommand": "pnpm --filter @bright-minds/types build && pnpm --filter @bright-minds/ai build && pnpm --filter @bright-minds/web build",
   "outputDirectory": "apps/web/.next",
   "installCommand": "pnpm install"
 }
